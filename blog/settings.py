@@ -27,16 +27,28 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# below adding functionality to send email with gmail
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'email'
+EMAIL_HOST_PASSWORD = 'password'
+
 
 # Application definition
 
 INSTALLED_APPS = [
+    'users.apps.UsersConfig', # new users app
+    'posts.apps.PostsConfig', # new post app
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'crispy_forms', # additional content to forms elegant and dry way
+
 ]
 
 MIDDLEWARE = [
@@ -54,7 +66,7 @@ ROOT_URLCONF = 'blog.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['posts/templates', 'users/templates'], # added template dirs for both app
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -105,7 +117,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Kiev' # changed timezone to my country timezone
 
 USE_I18N = True
 
@@ -118,3 +130,16 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+MEDIA_URL = '/media/' # media url
+
+LOGIN_URL = '/login/' # login url
+
+AUTH_USER_MODEL = 'users.CustomUser' # using new user model instead of the build-in
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4' # I will use bootstrap 4 for crispy forms
+
+LOGIN_REDIRECT_URL = 'posts:home' # page what will open after User login
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media') # rewriting default media location
+

@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'posts/style.css' %}">
+    <meta charset="UTF-8">
+    {% if title %}
+        <title>{{ title }}</title>
+    {% else %}
+        <title>My Blog</title>
+    {% endif %}
+</head>
+<body>
+
+<nav>
+    <ul>
+        <li><a href="{% url 'posts:home' %}">Home</a></li>
+        <li><a href="{% url 'posts:contact' %}">Contact</a></li>
+        {% if user.is_authenticated %}
+            <li><a href="{% url 'posts:create' %}">New Post</a></li>
+            <li><a href="{% url 'users:profile' %}">Profile</a></li>
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+        {% else %}
+            <li><a href="{% url 'login' %}">Login</a></li>
+            <li><a href="{% url 'users:register' %}">Register</a></li>
+        {% endif %}
+    </ul>
+</nav>
+
+<div>
+    {% if messages %}
+        {% for message in messages %}
+            <br><br>
+            <center>
+            <h1>{{ message }}</h1>
+            </center>
+        {% endfor %}
+    {% endif %}
+</div>
+
+
+{% block content %} {% endblock content %}
+
+
+</body>
+</html>
