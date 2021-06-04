@@ -21,7 +21,7 @@ In this project I used Generic Views and function views, also created signals fo
 
 To run this project firstly clone it (in command line):
 
-git clone https://github.com/aaaivanko/django_blog_project.git
+> git clone https://github.com/aaaivanko/django_blog_project.git
 
 Activate virtual environment.
 
@@ -29,13 +29,13 @@ Activation for windows: https://mothergeo-py.readthedocs.io/en/latest/developmen
 
 than install requirements
 
-pip install -r requirements.txt
+> pip install -r requirements.txt
 
 after that run migrations
 
-python manage.py migrate
+> python manage.py migrate
 
 and finally
 
-python manage.py runserver
+> python manage.py runserver
 
