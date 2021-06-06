@@ -10,5 +10,6 @@
         <small>Posted by {{ post.author }}  Date posted: {{ post.date_created }}</small>
         <h2>Post title: {{ post.title }}</h2>
         <p>Post content: {{ post.body }}</p>
+        <h3><a href="{% url 'posts:update' object.id %}">Edit Post</a></h3>
         </center>
 {% endblock content %}
